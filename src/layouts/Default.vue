@@ -1,0 +1,20 @@
+<template>
+  <Header />
+</template>
+
+<script>
+import Header from '~/components/Header.vue';
+
+export default {
+  components: {
+    Header
+  },
+  methods: {
+   
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+
+</style>
