@@ -3,6 +3,12 @@
     <Search v-on:onChildToParent="onChildClick" />
     <ul class="movie-listing">
       <li class="movie-listing-item" v-for="movie in movies">
+        <Movie v-on:addMovie="addToList" :movie="movie" />
+      </li>
+    </ul>
+    <h2 class="movie-listing__heading">Watch List:</h2>
+    <ul class="movie-listing watch-list">
+      <li class="movie-listing-item" v-for="movie in watchList">
         <Movie :movie="movie" />
       </li>
     </ul>
@@ -16,18 +22,23 @@ export default {
   name: 'MoviesList',
   components: {
     Movie: () => import('./Movie'),
-    Search: () => import('./Search')
+    Search: () => import('./Search'),
   },
   data() {
     return {
       movies: [],
-      searchQuery: ''
+      searchQuery: '',
+      watchList: []
     };
   },
   methods: {
     fetchData: async function() {
       try {
-        const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=0af3b5de5a542e42116f3e2e08d52d2a&language=en-US&query=${this.searchQuery}&page=1&include_adult=false`);
+        const response = await axios.get(
+          `https://api.themoviedb.org/3/search/movie?api_key=0af3b5de5a542e42116f3e2e08d52d2a&language=en-US&query=${
+            this.searchQuery
+          }&page=1&include_adult=false`
+        );
         console.log(response.data.results);
         const movies = await response.data;
         this.movies = movies.results;
@@ -36,8 +47,11 @@ export default {
       }
     },
     onChildClick(value) {
-      this.searchQuery = value
+      this.searchQuery = value;
       this.fetchData();
+    },
+    addToList(movie) {
+      this.watchList.push(movie);
     }
   }
 };
@@ -55,5 +69,9 @@ export default {
   margin: 0;
   grid-row-gap: 1rem;
   grid-template-columns: repeat(6, 1fr);
+}
+.movie-listing__heading {
+  color: white;
+  text-align: center;
 }
 </style>

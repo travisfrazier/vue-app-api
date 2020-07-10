@@ -20,12 +20,9 @@ header {
   color: white;
 }
 h1 {
-  margin: 0;
+  margin: 0 auto;
+  text-transform: uppercase;
+  text-align: center;
+  font-family:'Courier New', Courier, monospace;
 }
-
-/* name-enter -> name-enter-to */
-/* name-enter-active */
-
-/* name-leave -> name-leave-to */
-/* name-leave-active */
 </style>

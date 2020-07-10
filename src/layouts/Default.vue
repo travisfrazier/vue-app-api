@@ -28,6 +28,17 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="scss">
+  body {
+    margin: 0;
+    padding: 0;
+    background: #222;
+    font-family:'Courier New', Courier, monospace;
+  }
+  button {
+    &:hover {
+      cursor: pointer;
+      color: black;
+    }
+  }
 </style>
