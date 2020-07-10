@@ -1,49 +1,59 @@
 <template>
-  <ul class="movie-listing">
-    <li class="movie-listing-item" v-for="movie in movies">
-      <Movie :movie="movie" />
-    </li>
-  </ul>
+  <div>
+    <Search v-on:onChildToParent="onChildClick" />
+    <ul class="movie-listing">
+      <li class="movie-listing-item" v-for="movie in movies">
+        <Movie :movie="movie" />
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
+const axios = require('axios');
+
 export default {
   name: 'MoviesList',
   components: {
     Movie: () => import('./Movie'),
+    Search: () => import('./Search')
   },
   data() {
-      return {
-          movies: []
-      }
-  },
-  created: function() {
-      this.fetchData();
+    return {
+      movies: [],
+      searchQuery: ''
+    };
   },
   methods: {
     fetchData: async function() {
       try {
-        const res = await fetch(
-          'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3e176f464be990c4b8fefff841cef7b4'
-        );
-        const movies = await res.json();
+        const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=0af3b5de5a542e42116f3e2e08d52d2a&language=en-US&query=${this.searchQuery}&page=1&include_adult=false`);
+        console.log(response.data.results);
+        const movies = await response.data;
         this.movies = movies.results;
-      } catch (e) {
-        console.log(e);
+      } catch (error) {
+        console.error(error);
       }
     },
-  },
+    onChildClick(value) {
+      this.searchQuery = value
+      this.fetchData();
+    }
+  }
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .movie-listing .movie-listing-item {
   list-style-type: none;
 }
 
 .movie-listing {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  list-style: none;
+  padding: 1rem;
+  margin: 0;
+  grid-row-gap: 1rem;
+  grid-template-columns: repeat(6, 1fr);
 }
-
 </style>
