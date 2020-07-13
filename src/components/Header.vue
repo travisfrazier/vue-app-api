@@ -23,6 +23,9 @@ h1 {
   margin: 0 auto;
   text-transform: uppercase;
   text-align: center;
-  font-family:'Courier New', Courier, monospace;
+  font-size: 3rem;
+  @media only screen and (max-width: 450px) {
+      font-size: 2rem;
+  }
 }
 </style>

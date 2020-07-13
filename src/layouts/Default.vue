@@ -29,16 +29,23 @@ export default {
 </script>
 
 <style lang="scss">
+  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Modak&display=swap');
+
   body {
     margin: 0;
     padding: 0;
     background: #222;
-    font-family:'Courier New', Courier, monospace;
+    font-family:'Lato', sans-serif;
   }
   button {
     &:hover {
       cursor: pointer;
       color: black;
     }
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Modak', cursive;
+    font-weight: 400;
   }
 </style>

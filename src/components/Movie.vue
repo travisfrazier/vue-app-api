@@ -20,7 +20,7 @@ export default {
     },
     removeMovieClicked() {
       this.$emit('removeMovie', this.movie);
-    }
+    },
   },
   computed: {
     posterImage() {
@@ -54,7 +54,8 @@ export default {
   color: white;
   border-radius: 40px;
   padding: 0.5rem 1rem;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Lato', sans-serif;
+
   font-weight: bold;
 }
 
@@ -69,7 +70,7 @@ export default {
   color: white;
   border-radius: 40px;
   padding: 0.5rem 1rem;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Lato', sans-serif;
   font-weight: bold;
 }
 

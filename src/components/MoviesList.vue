@@ -3,7 +3,6 @@
     <Search v-on:onChildToParent="onChildClick" />
     <div class="movie-listing-container">
       <div class="movie-result-container">
-        <h2 class="movie-listing__heading">Result</h2>
         <ul class="movie-listing">
           <li class="movie-listing-item" v-for="movie in movies.slice(0, 1)">
             <Movie class="result-movie" v-on:addMovie="addToList" :movie="movie" />
@@ -11,7 +10,7 @@
         </ul>
       </div>
       <div class="watch-list-container">
-        <h2 class="movie-listing__heading">Watch List</h2>
+        <h2 class="movie-listing__heading">Gotta See These</h2>
         <ul class="movie-listing watch-list">
           <li class="movie-listing-item" v-for="movie in watchList">
             <Movie
@@ -76,7 +75,10 @@ export default {
 .movie-listing-container {
   padding-top: 2rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 30% 1fr;
+  @media only screen and (max-width: 850px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .movie-listing .movie-listing-item {
@@ -108,6 +110,16 @@ export default {
 }
 
 .watch-list {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  @media only screen and (max-width: 600px) {
+      grid-template-columns: repeat(3, 1fr);
+  }
+  @media only screen and (max-width: 450px) {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+h2 {
+  font-size: 2rem;
 }
 </style>

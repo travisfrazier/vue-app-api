@@ -35,7 +35,7 @@ export default {
   color: white;
   padding: 1rem 2.5rem;
   font-size: 1rem;
-  font-family: 'Courier New', Courier, monospace;
+  font-family:'Lato', sans-serif;
   font-weight: bold;
 }
 .c-input {
@@ -44,6 +44,9 @@ export default {
   font-size: 1rem;
   margin-right: 2rem;
   padding: 1rem;
-  font-family: 'Courier New', Courier, monospace;
+  font-family:'Lato', sans-serif;
+  @media only screen and (max-width: 600px) {
+    margin-right: 0.5rem;
+  }
 }
 </style>
