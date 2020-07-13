@@ -2,6 +2,9 @@
   <div class="c-movie">
     <img class="c-movie-image" :src="posterImage" :alt="movie.title" />
     <button v-on:click="addMovieClicked" class="c-movie-button">Add</button>
+    <button v-on:click="removeMovieClicked" class="c-movie-button-remove">
+      Remove
+    </button>
   </div>
 </template>
 
@@ -13,8 +16,8 @@ export default {
   props: ['movie'],
   methods: {
     addMovieClicked() {
-      this.$emit('addMovie', this.movie.poster_path);
-    }
+      this.$emit('addMovie', this.movie);
+    },
   },
   computed: {
     posterImage() {
@@ -24,7 +27,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .c-movie {
   display: flex;
   flex-direction: column;
@@ -48,7 +51,31 @@ export default {
   color: white;
   border-radius: 40px;
   padding: 0.5rem 1rem;
-  font-family:'Courier New', Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
+}
+
+.c-movie-button-remove {
+  display: none;
+  width: 8rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  background: firebrick;
+  border: none;
+  font-size: 0.85rem;
+  color: white;
+  border-radius: 40px;
+  padding: 0.5rem 1rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+.watch-list-movie {
+  .c-movie-button {
+    display: none;
+  }
+  .c-movie-button-remove {
+    display: block;
+  }
 }
 </style>
