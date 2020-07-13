@@ -10,7 +10,7 @@
       <h2 class="movie-listing__heading">Watch List:</h2>
       <ul class="movie-listing watch-list">
         <li class="movie-listing-item" v-for="movie in watchList">
-          <Movie class="watch-list-movie" :movie="movie" />
+          <Movie v-on:removeMovie="removeFromList" class="watch-list-movie" :movie="movie" />
         </li>
       </ul>
     </div>
@@ -37,7 +37,7 @@ export default {
     fetchData: async function() {
       try {
         const response = await axios.get(
-          `https://api.themoviedb.org/3/search/movie?api_key=0af3b5de5a542e42116f3e2e08d52d2a&language=en-US&query=${
+          `https://api.themoviedb.org/3/search/movie?api_key=3e176f464be990c4b8fefff841cef7b4&language=en-US&query=${
             this.searchQuery
           }&page=1&include_adult=false`
         );
@@ -56,7 +56,8 @@ export default {
       this.watchList.push(movie);
     },
     removeFromList(movie) {
-      this.watchList.pop(movie);
+      const index = this.watchList.indexOf(movie);
+      this.watchList.splice(index, 1);
     },
   },
 };

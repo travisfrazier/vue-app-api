@@ -18,6 +18,9 @@ export default {
     addMovieClicked() {
       this.$emit('addMovie', this.movie);
     },
+    removeMovieClicked() {
+      this.$emit('removeMovie', this.movie);
+    }
   },
   computed: {
     posterImage() {
