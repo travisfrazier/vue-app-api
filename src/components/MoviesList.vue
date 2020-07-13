@@ -1,18 +1,27 @@
 <template>
   <main>
     <Search v-on:onChildToParent="onChildClick" />
-    <div>
-      <ul class="movie-listing">
-        <li class="movie-listing-item" v-for="movie in movies.slice(0, 1)">
-          <Movie v-on:addMovie="addToList" :movie="movie" />
-        </li>
-      </ul>
-      <h2 class="movie-listing__heading">Watch List:</h2>
-      <ul class="movie-listing watch-list">
-        <li class="movie-listing-item" v-for="movie in watchList">
-          <Movie v-on:removeMovie="removeFromList" class="watch-list-movie" :movie="movie" />
-        </li>
-      </ul>
+    <div class="movie-listing-container">
+      <div class="movie-result-container">
+        <h2 class="movie-listing__heading">Result</h2>
+        <ul class="movie-listing">
+          <li class="movie-listing-item" v-for="movie in movies.slice(0, 1)">
+            <Movie class="result-movie" v-on:addMovie="addToList" :movie="movie" />
+          </li>
+        </ul>
+      </div>
+      <div class="watch-list-container">
+        <h2 class="movie-listing__heading">Watch List</h2>
+        <ul class="movie-listing watch-list">
+          <li class="movie-listing-item" v-for="movie in watchList">
+            <Movie
+              v-on:removeMovie="removeFromList"
+              class="watch-list-movie"
+              :movie="movie"
+            />
+          </li>
+        </ul>
+      </div>
     </div>
   </main>
 </template>
@@ -63,9 +72,27 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.movie-listing-container {
+  padding-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .movie-listing .movie-listing-item {
   list-style-type: none;
+}
+
+.result-movie {
+  .c-movie-image {
+    width: 11rem;
+  }
+}
+
+.watch-list-movie {
+  .c-movie-image {
+    width: 8rem;
+  }
 }
 
 .movie-listing {
@@ -81,6 +108,6 @@ export default {
 }
 
 .watch-list {
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 </style>
